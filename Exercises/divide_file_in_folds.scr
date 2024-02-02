@@ -1,13 +1,43 @@
 #!/bin/bash
+helpFunction()
+{
+   echo ""
+   echo "Usage: $0 -f input_file -n number_of_records_per_file"
+   echo -e "\t-f File name with the records to separate in folds"
+   echo -e "\t-n Number of records in the output files"
+
+   exit 1 # Exit script after printing help
+}
+
+while getopts "f:n:" opt
+do
+   case "$opt" in
+      f ) input_file="$OPTARG" ;;
+      n ) lines_per_file="$OPTARG" ;;
+      ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
+   esac
+done
+
+# Print helpFunction in case parameters are empty
+if [ -z "$input_file" ] || [ -z "$lines_per_file" ]
+then
+   echo "Some or all of the parameters are empty";
+   helpFunction
+fi
+
+# Begin script in case all parameters are correct
+echo "file to split is $input_file"
+echo "the number of records per file ID is $lines_per_file"
+
+
 
 # Name of the input file
 input_file="mydata.runALL"
 
+
+
 # counter for the output files
 count=1
-
-# Number of data per ouput file (fold)
-lines_per_file=5
 
 # Name for the folder where ouput files will be written
 output_dir="myfolds"
@@ -15,22 +45,24 @@ output_dir="myfolds"
 # Create output folder (if it does not exist)
 mkdir -p "$output_dir"
 
+
 # Initialize the output file
-output_file="$output_dir/mydata.samples.$count.txt"
+output_file=$output_dir/train.$count.txt
 touch "$output_file"
 
 #Shuffle input file and write it in shuffled_file
 shuf $input_file > shuffled_file
-# Read input file line by line
+
+# Leer el archivo de entrada lÌnea por lÌnea
 while IFS= read -r line; do
-  # add a line to the current output fold
+  # Agregar la lÌnea al archivo de salida actual
   echo "$line" >> "$output_file"
 
-  # Check that enough records were added to the output (fold) file
+  # Verificar si se han agregado suficientes lÌneas al archivo actual
   if [ "$(wc -l < "$output_file")" -ge "$lines_per_file" ]; then
-    # If the limit for 'lines_per_file' was reached, close the file, and create the next fold
+    # Si hemos alcanzado el lÌmite, cerrar el archivo actual y avanzar al siguiente
     count=$((count + 1))
-    output_file="$output_dir/mydata.samples.$count.txt"
+    output_file=$output_dir/train.$count.txt
     touch "$output_file"
   fi
 done < "shuffled_file"
@@ -38,6 +70,41 @@ done < "shuffled_file"
 # Clean the final output file if empty
 if [ "$(wc -l < "$output_file")" -eq 0 ]; then
   rm "$output_file"
+  count=$((count - 1))
 fi
 
 echo "Folds created in the directory $output_dir"
+echo $count "folds were created"
+
+
+#Create folds with training and testing files
+echo "Creating cross validation folders with training and testing files"
+fold=1
+while [ $fold -le $count ]; do
+echo "fold" $fold
+    mkdir -p $output_dir/fold_$fold
+    touch $output_dir/fold_$fold/train.txt
+
+    file=1
+    while [ $file -le $count ]; do
+        if [ $file == $fold ]; then
+            cp $output_dir/train.$file.txt $output_dir/fold_$fold/test.txt
+        else
+            cat $output_dir/train.$file.txt >> $output_dir/fold_$fold/train.txt
+        fi
+        file=$((file + 1))
+    done
+    fold=$((fold + 1))
+done
+
+#Run the program in each of the folds
+echo "Performing the cross validation"
+fold=1
+while [ $fold -le $count ]; do
+    echo "fold" $fold
+    #cp * $output_dir/fold_$fold/
+    cd $output_dir/fold_$fold
+    echo "./BLasso" #(place command here to run the program; e.g. ./BLasso)
+    cd ../..
+    fold=$((fold + 1))
+done
