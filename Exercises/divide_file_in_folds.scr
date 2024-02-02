@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Name of the input file
+input_file="mydata.runALL"
+
+# counter for the output files
+count=1
+
+# Number of data per ouput file (fold)
+lines_per_file=5
+
+# Name for the folder where ouput files will be written
+output_dir="mydata.samples"
+
+# Create output folder (if it does not exist)
+mkdir -p "$output_dir"
+
+# Initialize the output file
+output_file="$output_dir/mydata.samples.$count.txt"
+touch "$output_file"
+
+# Read input file line by line
+while IFS= read -r line; do
+  # add a line to the current output fold
+  echo "$line" >> "$output_file"
+
+  # Check that enough records were added to the output (fold) file
+  if [ "$(wc -l < "$output_file")" -ge "$lines_per_file" ]; then
+    # If the limit for 'lines_per_file' was reached, close the file, and create the next fold
+    count=$((count + 1))
+    output_file="$output_dir/mydata.samples.$count.txt"
+    touch "$output_file"
+  fi
+done < "$input_file"
+
+# Clean the final output file if empty
+if [ "$(wc -l < "$output_file")" -eq 0 ]; then
+  rm "$output_file"
+fi
+
+echo "Folds created in the directory $output_dir"
