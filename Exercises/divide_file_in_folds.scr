@@ -10,7 +10,7 @@ count=1
 lines_per_file=5
 
 # Name for the folder where ouput files will be written
-output_dir="mydata.samples"
+output_dir="myfolds"
 
 # Create output folder (if it does not exist)
 mkdir -p "$output_dir"
@@ -19,6 +19,8 @@ mkdir -p "$output_dir"
 output_file="$output_dir/mydata.samples.$count.txt"
 touch "$output_file"
 
+#Shuffle input file and write it in shuffled_file
+shuf $input_file > shuffled_file
 # Read input file line by line
 while IFS= read -r line; do
   # add a line to the current output fold
@@ -31,7 +33,7 @@ while IFS= read -r line; do
     output_file="$output_dir/mydata.samples.$count.txt"
     touch "$output_file"
   fi
-done < "$input_file"
+done < "shuffled_file"
 
 # Clean the final output file if empty
 if [ "$(wc -l < "$output_file")" -eq 0 ]; then
