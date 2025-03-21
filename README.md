@@ -27,8 +27,10 @@ Please make sure that you have installed on your laptop [R](https://cran.r-proje
 
 Once you have R and R Studio installed on your laptop, please install this list of packages using this command:
 ```
- rpkgs<-c("BGLR", "snpReady", "data.table", "pheatmap", "rsample", "coda", "ggplot2", "ROCR", "tidyverse", "rmarkdown","knitr", "pander")
- install.packages(rpkgs)
+rpkgs<-c("BGLR", "snpReady", "data.table", "pheatmap", "rsample", "coda", "ggplot2", "ROCR", "tidyverse", "rmarkdown","knitr", "pander", ‘remotes’, ‘bigreadr’, ‘ggpubr’)
+install.packages(rpkgs)
+
+remotes::install_github("privefl/bigsnpr")
 ```
 
 It is likely that when you install snpReady you get a message saying that ‘impute’ R package is necessary. You can install it as follows.
@@ -49,14 +51,15 @@ The ultimate check whether a package installation was successful is to load the 
 - Presentation (E&O)
 - General Introduction / Overview of the Course [General Introduction]<!--(slides/0_General_Introduction.pdf)-->
 - Introduction to Genome-wide Prediction in Human genetics and Animal and Plant breeding. Breeding value vs Polygenic Risk Score. Factors affecting reliability of GWP. (E). [Slides](slides/Day1.IntroductiontoGWPinHGandAandPbreeding2024.pdf)
-- Review of Quantitative genetics. Overview of Reference Populations. [Slides](slides/Day1.Review_Quantitative_Genetics.pdf)
+- Review of Quantitative genetics. Overview of Reference Populations (personal assignment). [Slides](slides/Day1.Review_Quantitative_Genetics.pdf)
+- Overview of genome-wide prediction in animals. [Slides](slides/Day1.Overview_of_GWP_in_animals.pdf)
 - Linear mixed models. [Slides](slides/Day1.Linear_Mixed_Models.pdf)
 - Genotype imputation procedures (design the reference population). [Slides](slides/Day1.Genotypeimputation.pdf)
 - Lab 1: imputation. [code](Exercises/Day1.script_toimpute.txt) [training.ped](data/day1/training_tobeimputed.ped) [training.map](data/day1/training_tobeimputed.map) [testing.ped](data/day1/testing_tobeimputed.ped) [testing.map](data/day1/testing_tobeimputed.map) 
 
 **Day 2**: Imputation
-- The ‘Curse’ of Dimensionality in large p small n problems. Regularization and shrinkage estimation. [Slides](slides/Day2.CurseOfDimensionality.pdf)
 - Breakout-rooms: Design of analytical approaches. (E&O)
+- The ‘Curse’ of Dimensionality in large p small n problems. Regularization and shrinkage estimation. [Slides](slides/Day2.CurseOfDimensionality.pdf)
 - Resemblance among relatives: Pedigree vs Genomic-based. (E). [Slides](slides/Day2.Resemblanceamongrelatives2023.pdf)
 - Lab 2: building relationship matrices (E). [code](Exercises/Day2.GRM_2022.R)  [data](data/day2/data.txt) 
 
@@ -75,8 +78,9 @@ The ultimate check whether a package installation was successful is to load the 
 - Random Forest (O)
 - Lab 5: [RanFog](https://github.com/ogrecio/RanFog) (O)
 - Boosting (O)
-- Lab 6: [RanBoost](https://github.com/ogrecio/RanBoost)(O)
+<!--Suppressed in 2025.  - Lab 6: [RanBoost](https://github.com/ogrecio/RanBoost)(O) -->
 - Other ML approaches and wrap up. (O)
+- Polygenic Risk Scores from GWAS summary statistics (E)
 
 **Day 5**: Practical session
 - Build your own Genome-enabled prediction. Breakout rooms
