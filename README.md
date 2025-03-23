@@ -50,7 +50,7 @@ The ultimate check whether a package installation was successful is to load the 
 **Day 1**: Concepts review
 - Presentation (E&O)
 - General Introduction / Overview of the Course [General Introduction]<!--(slides/0_General_Introduction.pdf)-->
-- Introduction to Genome-wide Prediction in Human genetics and Animal and Plant breeding. Breeding value vs Polygenic Risk Score. Factors affecting reliability of GWP. (E). [Slides](slides/Day1.IntroductiontoGWPinHGandAandPbreeding2024.pdf)
+- Introduction to Genome-wide Prediction in Human genetics and Animal and Plant breeding. Breeding value vs Polygenic Risk Score. Factors affecting reliability of GWP. (E). [Slides](slides/Day1.IntroductiontoGWPinHGandAandPbreeding2025.pdf)
 - Review of Quantitative genetics (personal assignment). [Slides](slides/Day1.Review_Quantitative_Genetics.pdf)
 - Overview of genome-wide prediction in animals. [Slides](slides/Day1.Overview_of_GWP_in_animals.pdf)
 - Linear mixed models. [Slides](slides/Day1.Linear_Mixed_Models.pdf)
