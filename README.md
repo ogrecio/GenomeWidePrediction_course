@@ -80,7 +80,7 @@ The ultimate check whether a package installation was successful is to load the 
 - Boosting (O)
 <!--Suppressed in 2025.  - Lab 6: [RanBoost](https://github.com/ogrecio/RanBoost)(O) -->
 - Other ML approaches and wrap up. (O)
-- Polygenic Risk Scores from GWAS summary statistics. [Slides](slides/Day4_Practical_session_Lassosum2.pdf) [code_lassosum2](Exercises/Day4.lassosum2.R) [LD_matrix](https://fundacioncnio-my.sharepoint.com/:u:/g/personal/melopezdm_cnio_es/Ec3n-axqdWBJmNrm9dLMAMYBtTxm-1ppM_R2vYwn4HHc3A?e=8Iwppv)] [bim_file](data/day4/data_binary.bim) [bed_file](data/day4/data_binary.bed) [fam_file](data/day4/data_binary.fam) [summarystats](data/day4/breast_cancer_summary_statistics.txt) [map_file](data/day4/map_hm3_plus.rds)(E)
+- Polygenic Risk Scores from GWAS summary statistics. [Slides](slides/Day4_Practical_session_Lassosum2.pdf) [code_lassosum2](Exercises/Day4.lassosum2.R) [LD_matrix](https://fundacioncnio-my.sharepoint.com/:u:/g/personal/melopezdm_cnio_es/Ec3n-axqdWBJmNrm9dLMAMYBtTxm-1ppM_R2vYwn4HHc3A?e=8Iwppv) [bim_file](data/day4/data_binary.bim) [bed_file](data/day4/data_binary.bed) [fam_file](data/day4/data_binary.fam) [summarystats](data/day4/breast_cancer_summary_statistics.txt) [map_file](data/day4/map_hm3_plus.rds)(E)
 
 **Day 5**: Practical session
 - Build your own Genome-enabled prediction. Breakout rooms
