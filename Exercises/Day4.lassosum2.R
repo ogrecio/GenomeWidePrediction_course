@@ -7,7 +7,7 @@ library(bigsnpr)  # Loads bigsnpr for large-scale SNP data analysis
 # library(bigreadr)  
 library(tidyverse)
 
-# Load the LD reference map data
+# Load the LD reference map data https://github.com/comorment/ldpred2_ref/tree/main
 map_ldref <- readRDS('lassosum2_tutorial_data/map_hm3_plus.rds')  # Read in the LD reference data for SNP matching
 
 library(data.table)
@@ -20,6 +20,7 @@ sumstats$n_eff <- 4 / (1 / 137045 + 1 / 119078)
 # Match the SNPs in the summary statistics with the LD reference map
 info_snp <- snp_match(sumstats, map_ldref)
 info_snp <- as_tibble(info_snp)  # Convert to tibble format
+
 
 # Add columns for standard deviations based on LD reference allele frequencies and summary statistics
 info_snp <- info_snp %>%
@@ -75,7 +76,7 @@ chr = 21
 plink_files <- snp_readBed('lassosum2_tutorial_data/data_binary.bed')
 
 # Load test data
-test_data <- readRDS('data_binary.rds')
+test_data <- readRDS('lassosum2_tutorial_data/data_binary.rds')
 
 # Prepare SNPs from test data
 snps_in_test <- test_data$map %>%
@@ -102,7 +103,7 @@ ind_ldref <- map_ldref %>% mutate(A = row_number()) %>% pull(A)
 ind_snps <- intersect(ind_dfbetas, ind_ldref)
 
 # Read the LD correlation matrix
-corr <- readRDS("LD_with_blocks_chr21.rds") #from https://github.com/comorment/ldpred2_ref
+corr <- readRDS("lassosum2_tutorial_data/LD_with_blocks_chr21.rds") #from https://github.com/comorment/ldpred2_ref
 corr <- corr[ind_snps, ind_snps]  # Subset correlation matrix based on common SNPs
 corr <- as_SFBM(corr, compact = TRUE)  # Convert to a compact format for memory efficiency
 
