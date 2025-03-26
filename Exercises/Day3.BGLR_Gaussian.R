@@ -53,3 +53,18 @@ output_Gaussian <- data.frame (DIC = fm.COV.GRM$fit$DIC, h2 = h2_Gaussian_mean)
 save( fm.COV.GRM, file='output/BGLR_Gaussian.RData')
 
 save(output_Gaussian, file='output/h2_DIC_Gaussian.RData')
+
+
+
+#Back Solving
+##beat_hat=X' * inv(XX') * u
+
+X_scaled<-t(apply(genotypes_filt,2,scale))
+XXprime<-fm.COV.GRM$ETA$GRM$K
+inverse_XXprime<-solve(XXprime)
+beta_backsolving<-((X_scaled)%*%inverse_XXprime)%*%fm.COV.GRM$ETA$GRM$u/(dim(X_scaled)[2])
+
+u_backsolving<-X_scaled%*%beta_backsolving
+
+plot(u_backsolving,fm.COV.GRM$ETA$GRM$u)
+cor(u_backsolving,fm.COV.GRM$ETA$GRM$u)
