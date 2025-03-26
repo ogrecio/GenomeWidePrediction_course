@@ -80,7 +80,7 @@ The ultimate check whether a package installation was successful is to load the 
 - Boosting (O)
 <!--Suppressed in 2025.  - Lab 6: [RanBoost](https://github.com/ogrecio/RanBoost)(O) -->
 - Other ML approaches and wrap up. (O)
-- Polygenic Risk Scores from GWAS summary statistics (E)
+- Polygenic Risk Scores from GWAS summary statistics. [Slides](slides/Day4_Practical_session_Lassosum2.pdf) (E)
 
 **Day 5**: Practical session
 - Build your own Genome-enabled prediction. Breakout rooms
